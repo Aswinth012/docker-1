@@ -1,8 +1,10 @@
-name: Docker Build and Deploy
+name: Docker Image CI/CD
 
 on:
   push:
     branches: [ "main" ] # Trigger on pushes to the 'main' branch
+  pull_request:
+    branches: [ "main" ] # Trigger on pull requests to the 'main' branch
 
 jobs:
   build:
@@ -14,24 +16,18 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t my-docker-app:${{ github.sha }} . 
+          docker build -t my-image:latest . 
 
-      - name: Push Docker Image to Docker Hub (Replace with your credentials)
+      - name: Push Docker Image to Docker Hub (Optional)
         run: |
-          docker login -u Aswinth012 -p Zara$3362 
-          docker push my-docker-app:${{ github.sha }} 
+          docker login -u aswinth012 -p Zara$3362
+          docker push my-image:latest 
 
   deploy:
-    needs: build 
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Login to Server (Replace with your server details)
+      - name: Deploy to Kubernetes (Example)
         run: |
-          ssh -i your_private_key.pem ubuntu@ip-172-31-37-60
-
-      - name: Deploy Container (Replace with your desired deployment method)
-        run: |
-          docker stop my-docker-app 
-          docker rm my-docker-app 
-          docker run -d -p 8080:8080 --name my-docker-app my-docker-app:${{ github.sha }}
+          kubectl apply -f kubernetes/deployment.yaml
