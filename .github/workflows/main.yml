@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: Login to Server (Replace with your server details)
         run: |
-          ssh -i b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+           b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
 NhAAAAAwEAAQAAAYEAvM51mKNx6X1sFTi62PGhlHfD4XcUc5L43lgEuBV7JQzwP7Cu5X/D
 rKSmZx6msC5Ver7HIxgjwoIkwFBFVsLDMOsO/rEaz8sDRj+x7/5gKCnhQPctKEzh+WVJk1
 llF6u+xKw5X3ZE/vDFL8LKh2XjnstBj9Wh8uP107yMQxPKh5IMxednYkv4yzwv23DgReN2
