@@ -1,0 +1,37 @@
+name: Docker Build and Deploy
+
+on:
+  push:
+    branches: [ "main" ] # Trigger on pushes to the 'main' branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker Image
+        run: |
+          docker build -t my-docker-app:${{ github.sha }} . 
+
+      - name: Push Docker Image to Docker Hub (Replace with your credentials)
+        run: |
+          docker login -u Aswinth012 -p Zara$3362 
+          docker push my-docker-app:${{ github.sha }} 
+
+  deploy:
+    needs: build 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Login to Server (Replace with your server details)
+        run: |
+          ssh -i your_private_key.pem ubuntu@ip-172-31-37-60
+
+      - name: Deploy Container (Replace with your desired deployment method)
+        run: |
+          docker stop my-docker-app 
+          docker rm my-docker-app 
+          docker run -d -p 8080:8080 --name my-docker-app my-docker-app:${{ github.sha }}
